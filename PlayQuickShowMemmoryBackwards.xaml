@@ -1,0 +1,38 @@
+﻿<Window x:Class="FunnyLanguage_WPF.PlayQuickShowMemmoryBackwards"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FunnyLanguage_WPF"
+        mc:Ignorable="d"
+        Title="PlayQuickShowMemmoryBackwards" Height="450" Width="800">
+    <Grid Background="DarkBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="1" x:Name="wordNtxtbl" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" TextWrapping="Wrap" Background="DarkBlue" Width="auto"  FontFamily="Arial"  FontStyle="Italic" FontWeight="Bold" Foreground="White" BorderThickness="0"/>
+        <TextBox x:Name="wordtxtbl" FontSize="25"  Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" TextWrapping="Wrap" Background="DarkBlue" Width="auto"  FontFamily="Arial"  FontStyle="Italic" FontWeight="Bold" Foreground="White" BorderThickness="0"/>
+        <TextBox x:Name="entertxtbl" FontSize="15"  HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed" Grid.Row="4" Width="700"/>
+        <Label x:Name="resultlb" FontSize="20"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="6" FontFamily="Arial"  FontStyle="Italic" FontWeight="Bold" Foreground="White" />
+        <Grid Grid.Row="8"  HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="checktbtn" Content="Check" Background="LightBlue"  Visibility="Collapsed"  VerticalAlignment="Center" Click="checktbtn_Click" Width="100" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
+            <Button x:Name="nextbtn" Grid.Column="2" Content="Next Word" Background="LightBlue" FontSize="15" Visibility="Collapsed" VerticalAlignment="Center" Click="nextbtn_Click" Width="100" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial"  FontStyle="Italic" FontWeight="Bold" />
+        </Grid>
+        <Button x:Name="playbtn" Grid.Row="10"  Content="Play" HorizontalAlignment="Center" Height="35" Click="playbtn_Click" Width="100" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
+    </Grid>
+</Window>

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="AddVideoDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Games.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="GameStartUpDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="List.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MemmoryCards.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Player.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PlayQuickShowMemmory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PlayQuickShowMemmoryBackwards.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Translator.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Words.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AddVideoDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Games.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="GameStartUpDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="List.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MemmoryCards.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Player.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PlayQuickShowMemmory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PlayQuickShowMemmoryBackwards.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Translator.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Words.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

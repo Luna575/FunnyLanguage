@@ -1,0 +1,69 @@
+﻿<Page x:Class="FunnyLanguage_WPF.Player"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FunnyLanguage_WPF"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="1050"
+      Title="Player">
+
+    <Grid Background="DarkBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="15"></RowDefinition>
+        </Grid.RowDefinitions>
+        <MediaElement Grid.Row="0" x:Name="mediaElement" Visibility="Visible" ScrubbingEnabled="True" LoadedBehavior="Manual" UnloadedBehavior="Stop"  MediaOpened="mediaElement_MediaOpened" MediaEnded="mediaElement_MediaEnded" Width="auto" Height="auto"/>
+        <TextBox IsReadOnly="True" BorderThickness="0" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10" TextWrapping="Wrap"  TextAlignment="Justify" AcceptsReturn="True" Padding="5,2" Background="Black" Foreground="White" x:Name="captiontxt" MouseDoubleClick="captiontxt_MouseDoubleClick"></TextBox>
+        <Slider Grid.Row="1" ValueChanged="Slider_ValueChanged" x:Name="slider"/>
+        <Label Content="00:00:00" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top"  FontSize="15" Foreground="White" x:Name="beginTimeTxt" FontFamily="Arial" FontWeight="Bold"/>
+        <Label Content="00:00:00" HorizontalAlignment="Right"  Grid.Row="2" VerticalAlignment="Top"  FontSize="15" Foreground="White" x:Name="endTimeTxt" FontFamily="Arial" FontWeight="Bold"/>
+
+        <Grid Grid.Row="3"  HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width =" auto"/>
+                <ColumnDefinition Width =" 5"/>
+                <ColumnDefinition Width =" auto"/>
+                <ColumnDefinition Width =" 5"/>
+                <ColumnDefinition Width =" auto"/>
+                <ColumnDefinition Width =" 5"/>
+                <ColumnDefinition Width =" auto"/>
+                <ColumnDefinition Width =" 5"/>
+                <ColumnDefinition Width =" auto"/>
+                <ColumnDefinition Width =" 5"/>
+                <ColumnDefinition Width =" auto"/>
+                <ColumnDefinition Width =" 5"/>
+                <ColumnDefinition Width =" auto"/>
+                <ColumnDefinition Width =" 5"/>
+                <ColumnDefinition Width =" auto"/>
+                <ColumnDefinition Width =" 5"/>
+                <ColumnDefinition Width =" auto"/>
+                <ColumnDefinition Width =" 5"/>
+                <ColumnDefinition Width =" auto"/>
+                <ColumnDefinition Width =" 5"/>
+                <ColumnDefinition Width =" auto"/>
+                <ColumnDefinition Width =" 5"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="▶" Width="70" Height="35" Click="Button_Play" Background="LightBlue" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15"  FontWeight="Bold"/>
+            <Button Grid.Column="2" Content="||" Width="70" Height="35" Click="Button_Pause" Background="LightBlue" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15"  FontWeight="Bold"/>
+            <Button Grid.Column="4" Content="■" Width="70" Height="35" Click="Button_Stop" Background="LightBlue" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontWeight="Bold"/>
+            <Button Grid.Column="6" Content="⧏" Width="70" Height="35"  Click="Button_Backward" Margin="10,0,0,0" Background="LightBlue" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontWeight="Bold"/>
+            <Button Grid.Column="8" Content="⧐" Width="70" Height="35"  Click="Button_Forward"  Margin="10,0,0,0" Background="LightBlue" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15"  FontWeight="Bold"/>
+            <Button Grid.Column="10" Content="🔎︎..." Width="70" Height="35"   Click="Button_Search" Margin="10,0,0,0" Background="LightBlue" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15"  FontWeight="Bold"/>
+            <Button Grid.Column="12" x:Name="captionbtn" Content="Subtitles Off..." Width="135" Height="35"   Click="Button_CaptonOnOffC" Margin="10,0,0,0" Background="LightBlue" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
+            <ComboBox Grid.Column="14" x:Name="language" Width="135" Margin="10,0,0,0" SelectionChanged="language_SelectionChanged" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <!-- inšpirované stránkou: https://stackoverflow.com/questions/1343493/wpf-how-to-make-comboboxitems-hold-integers-in-xaml -->
+            <ComboBox Grid.Column="16" x:Name="fontSize" Width="80" Margin="10,0,0,0" SelectionChanged="fontSize_SelectionChanged" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <sys:Int32>15</sys:Int32>
+                <sys:Int32>20</sys:Int32>
+                <sys:Int32>25</sys:Int32>
+                <sys:Int32>30</sys:Int32>
+            </ComboBox>
+            <Button Grid.Column="18" Content="Saved Words..." Width="120" Height="35" Click="Button_Words"  Margin="10,0,0,0" Background="LightBlue" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
+        </Grid>
+    </Grid>
+</Page>

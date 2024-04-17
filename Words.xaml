@@ -1,0 +1,66 @@
+﻿<Window x:Class="FunnyLanguage_WPF.Words"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FunnyLanguage_WPF"
+        mc:Ignorable="d"
+        Title="Words" Height="550" Width="1500">
+    <Grid Background="DarkBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Original language: " HorizontalAlignment="Center" Foreground="White" FontFamily="Arial" FontSize="14" FontStyle="Italic" FontWeight="Bold" />
+            <ComboBox Grid.Column="1" x:Name="languageOriginal" Width="100" SelectionChanged="languageOriginal_SelectionChanged" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Grid.Column="3" Content="Translated to langugage" HorizontalAlignment="Center" Foreground="White" FontFamily="Arial" FontSize="14" FontStyle="Italic" FontWeight="Bold" />
+            <ComboBox  Grid.Column="4" x:Name="languageTranslated" Width="100" SelectionChanged="languageTranslated_SelectionChanged" HorizontalAlignment="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label Grid.Column="6" Content="Know it:" HorizontalAlignment="Center" Foreground="White" FontFamily="Arial" FontSize="14" FontStyle="Italic" FontWeight="Bold" />
+            <ComboBox  Grid.Column="7" x:Name="knowIt" Width="100" SelectionChanged="knowIt_SelectionChanged" HorizontalAlignment="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Button x:Name="deletebtn" Grid.Column="9" Content="Delete" Width="100" Click="Button_Delete" Background="LightBlue"  BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="14" FontStyle="Italic" FontWeight="Bold" />
+            <Button x:Name="knowitbtn" Grid.Column="11" Content="Know It" Width="100" Click="Button_KnowIt" Background="LightBlue"  BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="14" FontStyle="Italic" FontWeight="Bold" />
+            <Button x:Name="learnagainbtn" Grid.Column="13" Content="Learn Again" Width="110" Click="Button_LearnAgain" Background="LightBlue"  BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="14" FontStyle="Italic" FontWeight="Bold" />
+        </Grid>
+        <ScrollViewer Grid.Row="1"  
+              Width="Auto" 
+              HorizontalScrollBarVisibility="Disabled"
+              VerticalScrollBarVisibility="Auto" VerticalContentAlignment ="Top">
+            <ListView x:Name="listview" SelectionChanged="listview_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Wordlist of video" DisplayMemberBinding="{Binding WordlistId}" />
+                        <GridViewColumn Header="Original language" DisplayMemberBinding="{Binding FirstLanguage}" />
+                        <GridViewColumn Header="Original text" DisplayMemberBinding="{Binding OriginalText}" />
+                        <GridViewColumn Header="Translated to language" DisplayMemberBinding="{Binding SecondLanguage}" />
+                        <GridViewColumn Header="Translated text" DisplayMemberBinding="{Binding TranslatedText}" />
+                        <GridViewColumn Header="Added to list" DisplayMemberBinding="{Binding AddedToListTime}" />
+                        <GridViewColumn Header="Number of successes" DisplayMemberBinding="{Binding SuccessRate}" />
+                        <GridViewColumn Header="Number of failures" DisplayMemberBinding="{Binding FailureRate}" />
+                        <GridViewColumn Header="Knew But Had Remember" DisplayMemberBinding="{Binding KnewButHadRemember}" />
+                        <GridViewColumn Header="Last time showed" DisplayMemberBinding="{Binding LastTime}" />
+                        <GridViewColumn Header="Last try success" DisplayMemberBinding="{Binding LastTrySuccess}" />
+                        <GridViewColumn Header="Know it" DisplayMemberBinding="{Binding KnowIt}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
+    </Grid>
+</Window>
