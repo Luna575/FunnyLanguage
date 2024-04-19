@@ -42,6 +42,7 @@ namespace FunnyLanguage_WPF
         private string knowit = "";
         private TextBox? statistic1xtb;
         private TextBox? statistic2xtb;
+        private static Words instance;
         public Words(int? videoId = null, TextBox? statistic1xtbl = null, TextBox? statistic2xtbl = null)
         {
             InitializeComponent();
@@ -99,12 +100,36 @@ namespace FunnyLanguage_WPF
             statistic1xtb = statistic1xtbl;
             statistic2xtb = statistic2xtbl;
         }
+        public static Words GetInstance(int? videoId = null, TextBox? statistic1xtbl = null, TextBox? statistic2xtbl = null)
+        {
+            using var db = new VideoContext();
+            if (instance == null || !instance.IsVisible)
+            {
+                instance = new Words(videoId,statistic1xtbl,statistic2xtbl);
+            }
+            else 
+            {
+                instance.Close();
+                instance = new Words(videoId, statistic1xtbl, statistic2xtbl);
+            }
+            return instance;
+        }
+        public static bool IsInstanceNull()
+        {
+            if (instance == null || !instance.IsVisible)
+            {
+                return true;
+            }
+            
+            return false;
+        }
+
 
         private void languageOriginal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             language1 = (Models.Language)languageOriginal.SelectedItem;
             Load();
-          
+
         }
 
         private void languageTranslated_SelectionChanged(object sender, SelectionChangedEventArgs e)

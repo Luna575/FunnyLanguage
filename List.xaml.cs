@@ -567,7 +567,7 @@ namespace FunnyLanguage_WPF
                    var wordsl = new ObservableCollection<Models.Word>(db.Words.Where(x => x.WordlistId == wordList.WordListId).ToList());
                     if (wordsl != null)
                     {
-                        var words = new FunnyLanguage_WPF.Words(video.VideoId, statistic1xtbl, statistic2xtbl);
+                        var words = Words.GetInstance(video.VideoId, statistic1xtbl, statistic2xtbl);
                         words.Show();
                     }
                     else { MessageBox.Show("There are no saved words for this video!!!"); }
@@ -613,7 +613,7 @@ namespace FunnyLanguage_WPF
             var wordsl = new ObservableCollection<Models.Word>(db.Words.ToList());
             if (wordsl != null)
             {
-                var words = new FunnyLanguage_WPF.Words(null, statistic1xtbl,statistic2xtbl);
+                var words = Words.GetInstance(null, statistic1xtbl,statistic2xtbl);
                 words.Show();
             }
             else { MessageBox.Show("There are no saved words for this video!!!"); }

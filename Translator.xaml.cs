@@ -1,4 +1,5 @@
-﻿using FunnyLanguage_WPF.Models;
+﻿using AngleSharp.Dom;
+using FunnyLanguage_WPF.Models;
 using FunnyLanguage_WPF.Services;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
@@ -18,7 +19,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using YoutubeExplode.Videos;
 using YoutubeExplode.Videos.ClosedCaptions;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FunnyLanguage_WPF
 {
@@ -27,10 +30,12 @@ namespace FunnyLanguage_WPF
     /// </summary>
     public partial class Translator : Window
     {
+        private static Translator instance;
         private TranslatorClass translator = new TranslatorClass();
         private ObservableCollection<Models.Language> languageCollection;
         public ObservableCollection<Models.Language> languageCollectionVideo;
         private Models.Video _video;
+        
         public Translator(ObservableCollection<Models.Language> languages, Models.Language language, Models.Video video, string? txt)
         {
             InitializeComponent();
@@ -48,6 +53,28 @@ namespace FunnyLanguage_WPF
             if ( !string.IsNullOrEmpty(txt)) { textToTranslate.Text = txt.Trim(); }
 
         }
+        /// <summary>
+        /// Napísané s pomocou CHATGPT
+        /// </summary>
+        /// <param name="languages"></param>
+        /// <param name="language"></param>
+        /// <param name="video"></param>
+        /// <param name="txt"></param>
+        /// <returns></returns>
+        public static Translator GetInstance(ObservableCollection<Models.Language> languages, Models.Language language, Models.Video video, string? txt)
+        {
+            if(instance == null || !instance.IsVisible)
+            {
+                instance = new Translator(languages, language, video, txt);
+            }
+            else
+            {
+               instance.language1.SelectedItem = language;
+               if (!string.IsNullOrEmpty(txt)) { instance.textToTranslate.Text = txt.Trim(); }
+            }
+            return instance;
+        }
+      
 
         private async void Button_Translate(object sender, RoutedEventArgs e)
         {
@@ -227,6 +254,11 @@ namespace FunnyLanguage_WPF
                                     videoContext.WordLists.Where(x => x.VideoId == wordList.VideoId).First().Words.Add(word);
                                     videoContext.SaveChanges();
                                     transaction.Commit();
+                                    if (!Words.IsInstanceNull())
+                                    {
+                                        var words = Words.GetInstance(_video.VideoId);
+                                        words.Show();
+                                    }
                                 }
                                 else
                                 {
@@ -259,8 +291,13 @@ namespace FunnyLanguage_WPF
 
         private void Button_Words(object sender, RoutedEventArgs e)
         {
-            var words = new FunnyLanguage_WPF.Words(_video.VideoId);
+            var words = Words.GetInstance(_video.VideoId);
             words.Show();
+        }
+
+        private void textToTranslate_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            translatedText.Text = "";
         }
     }
 }

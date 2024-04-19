@@ -88,28 +88,18 @@ namespace FunnyLanguage_WPF
             var m = (string)mode.SelectedItem;
             var w = new List<Models.Word>(db.Words.Where(x => x.FirstLanguage.Equals(l1.Code) && x.SecondLanguage.Equals(l2.Code) && x.KnowIt.Equals("Don't know")));
             var rand = new Random();
+            _words.Clear();
             if (w.Count > 0)
             {
                 if (mode.Equals("Random 20 words") && w.Count >= 20)
                 {
-                    
+
                     for (int i = 0; i < 20; i++)
                     {
 
-                        int id = rand.Next(20);
-                        if (w.Any(x => x.WordId == id))
-                        {
-                            var h = w[id];
-                            if (!_words.Contains(h))
-                            {
-                                _words.Add(h);
-                            }
-                            else { i--; }
-                        }
-                        else
-                        {
-                            i--;
-                        }
+                        int index = rand.Next(w.Count);
+                        _words.Add(w[index]);
+                        w.RemoveAt(index);
 
                     }
                 } else
@@ -118,15 +108,9 @@ namespace FunnyLanguage_WPF
                     for (int i = 0; i < w.Count; i++)
                     {
 
-                        int id = rand.Next(w.Count);
-
-
-                        var h = w[id];
-                        if (!_words.Contains(h))
-                        {
-                            _words.Add(h);
-                        }
-                        else { i--; }
+                        int index = rand.Next(w.Count);
+                        _words.Add(w[index]);
+                        w.RemoveAt(index);
 
 
                     }

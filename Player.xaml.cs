@@ -161,8 +161,9 @@ namespace FunnyLanguage_WPF
         private void Translate()
         {
             var txt = captiontxt.SelectedText;
-            Translator translator = new Translator(languageCollection, _language, _video, txt);
-            translator.Show();
+            Translator translator = Translator.GetInstance(languageCollection, _language, _video, txt);
+            if (translator != null) { translator.Show(); }
+            
         }
         private void Button_CaptonOnOffC(object sender, RoutedEventArgs e)
         {
@@ -233,7 +234,7 @@ namespace FunnyLanguage_WPF
 
         private void Button_Words(object sender, RoutedEventArgs e)
         {
-            var words = new FunnyLanguage_WPF.Words(_video.VideoId);
+            var words =  Words.GetInstance(_video.VideoId);
             words.Show();
         }
 
