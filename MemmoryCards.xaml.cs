@@ -66,20 +66,9 @@ namespace FunnyLanguage_WPF
                     for (int i = 0; i < 20; i++)
                     {
 
-                        int id = rand.Next(20);
-                        if (w.Any(x => x.WordId == id))
-                        {
-                            var h = w[id];
-                            if (!_words.Contains(h))
-                            {
-                                _words.Add(h);
-                            }
-                            else { i--; }
-                        }
-                        else
-                        {
-                            i--;
-                        }
+                        int index = rand.Next(w.Count);
+                        _words.Add(w[index]);
+                        w.RemoveAt(index);
 
                     }
                 }
@@ -89,15 +78,9 @@ namespace FunnyLanguage_WPF
                     for (int i = 0; i < w.Count; i++)
                     {
 
-                        int id = rand.Next(w.Count);
-
-
-                        var h = w[id];
-                        if (!_words.Contains(h))
-                        {
-                            _words.Add(h);
-                        }
-                        else { i--; }
+                        int index = rand.Next(w.Count);
+                        _words.Add(w[index]);
+                        w.RemoveAt(index);
 
 
                     }
