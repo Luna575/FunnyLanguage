@@ -37,13 +37,21 @@ namespace FunnyLanguage_WPF
             if (startUp.ShowDialog() == true)
             {
                 GetRandomWords(startUp.language1, startUp.language2, startUp.mode);
-                var txt = "Do you know this: ";
-                wordNtxtbl.Text = txt;
-                wordtxtbl.Text = _words[number].OriginalText;
-                playbtn.Visibility = Visibility.Collapsed;
-                dontknowbtn.Visibility = Visibility.Visible;
-                knowbtn.Visibility = Visibility.Visible;
-                littleknowbtn.Visibility = Visibility.Visible;
+                if (_words.Count > 0)
+                {
+                    var txt = "Do you know this: ";
+                    wordNtxtbl.Text = txt;
+                    wordtxtbl.Text = _words[number].OriginalText;
+                    playbtn.Visibility = Visibility.Collapsed;
+                    dontknowbtn.Visibility = Visibility.Visible;
+                    knowbtn.Visibility = Visibility.Visible;
+                    littleknowbtn.Visibility = Visibility.Visible;
+                }
+                else 
+                {
+                    MessageBox.Show("There are no words to play with!!!");
+                    this.Close(); 
+                }
             }
             else
             {
@@ -56,7 +64,13 @@ namespace FunnyLanguage_WPF
             var l1 = (Models.Language)language1.SelectedItem;
             var l2 = (Models.Language)language2.SelectedItem;
             var m = (string)mode.SelectedItem;
-            var w = new List<Models.Word>(db.Words.Where(x => x.FirstLanguage.Equals(l1.Code) && x.SecondLanguage.Equals(l2.Code) && x.KnowIt.Equals("Don't know")));
+            var wordlist = db.WordLists.Where(x => x.VideoId == _video.VideoId).FirstOrDefault();
+            var w = new List<Models.Word>();
+            if (wordlist != null)
+            {
+                w = new List<Models.Word>(db.Words.Where(x => x.WordlistId == wordlist.WordListId && x.FirstLanguage.Equals(l1.Code) && x.SecondLanguage.Equals(l2.Code) && x.KnowIt.Equals("Don't know")));
+            }
+            else { w = new List<Models.Word>(db.Words.Where(x => x.FirstLanguage.Equals(l1.Code) && x.SecondLanguage.Equals(l2.Code) && x.KnowIt.Equals("Don't know"))); }
             var rand = new Random();
             if (w.Count > 0)
             {
@@ -74,8 +88,8 @@ namespace FunnyLanguage_WPF
                 }
                 else
                 {
-
-                    for (int i = 0; i < w.Count; i++)
+                    var count = w.Count;
+                    for (int i = 0; i < count; i++)
                     {
 
                         int index = rand.Next(w.Count);
@@ -88,6 +102,7 @@ namespace FunnyLanguage_WPF
 
                 }
             }
+            
         }
         private void playbtn_Click(object sender, RoutedEventArgs e)
         {

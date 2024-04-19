@@ -40,10 +40,9 @@ namespace FunnyLanguage_WPF
         private int? _videoId;
         public ObservableCollection<Models.Word> words;
         private string knowit = "";
-        private TextBox? statistic1xtb;
-        private TextBox? statistic2xtb;
+        private VideoList? _videoList;
         private static Words instance;
-        public Words(int? videoId = null, TextBox? statistic1xtbl = null, TextBox? statistic2xtbl = null)
+        public Words(int? videoId = null, VideoList? videoList = null)
         {
             InitializeComponent();
             _videoId = videoId;
@@ -97,20 +96,19 @@ namespace FunnyLanguage_WPF
                 listview.SelectedIndex= 0;
                 listview.SelectedItem= null;
             } else { MessageBox.Show("There are no saved words for this video!!!"); }
-            statistic1xtb = statistic1xtbl;
-            statistic2xtb = statistic2xtbl;
+            _videoList = videoList;
         }
-        public static Words GetInstance(int? videoId = null, TextBox? statistic1xtbl = null, TextBox? statistic2xtbl = null)
+        public static Words GetInstance(int? videoId = null, VideoList? videoList = null)
         {
             using var db = new VideoContext();
             if (instance == null || !instance.IsVisible)
             {
-                instance = new Words(videoId,statistic1xtbl,statistic2xtbl);
+                instance = new Words(videoId,videoList);
             }
             else 
             {
                 instance.Close();
-                instance = new Words(videoId, statistic1xtbl, statistic2xtbl);
+                instance = new Words(videoId, videoList);
             }
             return instance;
         }
@@ -225,20 +223,15 @@ namespace FunnyLanguage_WPF
                 listview.ItemsSource = words;
             }
         }
-        private void UpateTextInList()
+        private void UpdateTextInList()
         {
-            if (statistic1xtb != null && statistic2xtb != null)
+            if (_videoList != null)
             {
-                using var db = new VideoContext();
-                var words2 = db.Words.Where(x => x.KnowIt.Equals("Know it")).ToList();
-                if (words2 != null)
+                var index = _videoList.videolist.SelectedIndex;
+                if (index >= 0)
                 {
-                    statistic1xtb.Text = "Total number of learned words and phrases: " + words2.Count;
-                }
-                words2 = db.Words.Where(x => x.KnowIt.Equals("Know it") && x.LastTime.Date == DateTime.Now.Date).ToList();
-                if (words2 != null)
-                {
-                    statistic2xtb.Text = "Total number of learned words and phrases for today: " + words2.Count;
+                    _videoList.videolist.SelectedItem = null;
+                    _videoList.videolist.SelectedIndex = index;
                 }
             }
         }
@@ -285,7 +278,7 @@ namespace FunnyLanguage_WPF
                             MessageBox.Show("Error to perform a transaction: " + ex.Message);
                         }
                     }
-                    UpateTextInList();
+                    UpdateTextInList();
                     Load();
                 }
             }
@@ -324,7 +317,7 @@ namespace FunnyLanguage_WPF
                             MessageBox.Show("Error to perform a transaction: " + ex.Message);
                         }
                     }
-                    UpateTextInList();
+                    UpdateTextInList();
                     Load();
                 }
             }
@@ -369,7 +362,7 @@ namespace FunnyLanguage_WPF
                             MessageBox.Show("Error to perform a transaction: " + ex.Message);
                         }
                     }
-                    UpateTextInList();
+                    UpdateTextInList();
                     Load();
                 }
             }
@@ -412,6 +405,8 @@ namespace FunnyLanguage_WPF
                 
             }
         }
+
+       
     }
   
 }

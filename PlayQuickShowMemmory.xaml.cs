@@ -47,14 +47,22 @@ namespace FunnyLanguage_WPF
             if (startUp.ShowDialog() == true)
             {
                 GetRandomWords(startUp.language1, startUp.language2, startUp.mode);
-                timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(10);
-                timer.Tick += new EventHandler(timer_Tick);
-                var txt = "You have 10 seconds. Try to remember the translation of: ";
-                wordNtxtbl.Text = txt;
-                wordtxtbl.Text = _words[number].OriginalText;
-                timer.Start();
-                playbtn.Visibility = Visibility.Collapsed;
+                if (_words.Count > 0)
+                {
+                    timer = new DispatcherTimer();
+                    timer.Interval = TimeSpan.FromSeconds(10);
+                    timer.Tick += new EventHandler(timer_Tick);
+                    var txt = "You have 10 seconds. Try to remember the translation of: ";
+                    wordNtxtbl.Text = txt;
+                    wordtxtbl.Text = _words[number].OriginalText;
+                    timer.Start();
+                    playbtn.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    MessageBox.Show("There are no words to play with!!!");
+                    this.Close(); 
+                }
             }
             else
             {
@@ -76,6 +84,7 @@ namespace FunnyLanguage_WPF
             } else
             {
                 Check();
+                checktbtn.Visibility= Visibility.Collapsed;
             }
             
         }
@@ -86,7 +95,13 @@ namespace FunnyLanguage_WPF
             var l1 = (Models.Language)language1.SelectedItem;
             var l2 = (Models.Language)language2.SelectedItem;
             var m = (string)mode.SelectedItem;
-            var w = new List<Models.Word>(db.Words.Where(x => x.FirstLanguage.Equals(l1.Code) && x.SecondLanguage.Equals(l2.Code) && x.KnowIt.Equals("Don't know")));
+            var wordlist = db.WordLists.Where(x => x.VideoId == _video.VideoId).FirstOrDefault();
+            var w = new List<Models.Word>();
+            if (wordlist != null)
+            {
+                w = new List<Models.Word>(db.Words.Where(x => x.WordlistId == wordlist.WordListId && x.FirstLanguage.Equals(l1.Code) && x.SecondLanguage.Equals(l2.Code) && x.KnowIt.Equals("Don't know")));
+            }
+            else { w = new List<Models.Word>(db.Words.Where(x => x.FirstLanguage.Equals(l1.Code) && x.SecondLanguage.Equals(l2.Code) && x.KnowIt.Equals("Don't know"))); }
             var rand = new Random();
             _words.Clear();
             if (w.Count > 0)
@@ -104,8 +119,8 @@ namespace FunnyLanguage_WPF
                     }
                 } else
                 {
-
-                    for (int i = 0; i < w.Count; i++)
+                    var count = w.Count;
+                    for (int i = 0; i < count; i++)
                     {
 
                         int index = rand.Next(w.Count);
@@ -118,12 +133,14 @@ namespace FunnyLanguage_WPF
 
                 }
             }
+           
         }
 
         private void checktbtn_Click(object sender, RoutedEventArgs e)
         {
             timer.Stop();
             Check();
+            checktbtn.Visibility = Visibility.Collapsed;
         }
         private void Check()
         {

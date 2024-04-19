@@ -16,7 +16,7 @@
     <Compile Update="GameStartUpDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="List.xaml.cs">
+    <Compile Update="VideoList.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MemmoryCards.xaml.cs">
@@ -48,7 +48,7 @@
     <Page Update="GameStartUpDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="List.xaml">
+    <Page Update="VideoList.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

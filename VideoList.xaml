@@ -1,0 +1,65 @@
+﻿<Page x:Class="FunnyLanguage_WPF.VideoList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FunnyLanguage_WPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="1150"
+      Title="List">
+    <Grid Background="DarkBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="15"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="15"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Search:"  Foreground="White" HorizontalAlignment="Left" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
+            <TextBox x:Name="searchtxtbl" Grid.Column="2" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Background="LightBlue" Width="900"  FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold" TextChanged="searchtxtbl_TextChanged" />
+        </Grid>
+        <ListBox x:Name="videolist" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" MinHeight="450" Width="970" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="ExtraLight" SelectionChanged="videolist_SelectionChanged"/>
+        <Grid Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="5"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="15"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="5"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="5"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="1" Background="LightBlue" VerticalAlignment="Bottom" Content="Add..." Width="145" Height="35" Click="Button_Add" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
+            <Button x:Name="playVideobtn" Grid.Row="3" Background="LightBlue" VerticalAlignment="Center" Content="Play Video" Width="145" Height="35" Click="Button_PlayVideo" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
+            <Button x:Name="wordsbtn" Grid.Row="5" Background="LightBlue" VerticalAlignment="Center" Content="Words..." Width="145" Height="35" Click="Button_Words" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
+            <Button x:Name="allwordsbtn" Grid.Row="7" Background="LightBlue" VerticalAlignment="Center" Content="All words..." Width="145" Height="35" Click="Button_AllWords" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
+            <Button x:Name="playGamebtn" Grid.Row="9" Background="LightBlue" VerticalAlignment="Center" Content="Play Game" Width="145" Height="35" Click="Button_Games" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
+            <Button x:Name="deletebtn" Grid.Row="11" Background="LightBlue" VerticalAlignment="Center" Content="Delete" Width="145" Height="35" Click="Button_Delete" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
+            <Button x:Name="deleteVideoFilebtn" Grid.Row="13" Background="LightBlue" VerticalAlignment="Center" Content="Delete Video Files" Width="145" Height="35" Click="Button_DeleteVideoFileOnly" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
+            <TextBox x:Name="statistic1xtbl" Grid.Row="15" HorizontalAlignment="Left" Height="auto" TextWrapping="Wrap" TextAlignment="Justify" AcceptsReturn="True" Padding="5,2" Background="DarkBlue" Foreground="White"  Width="145"  FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold" IsReadOnly="True" />
+            <TextBox x:Name="statistic2xtbl" Grid.Row="17" HorizontalAlignment="Left" Height="auto" TextWrapping="Wrap" TextAlignment="Justify" AcceptsReturn="True" Padding="5,2" Background="DarkBlue" Foreground="White"  Width="145"  FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold" IsReadOnly="True" />
+        </Grid>
+    </Grid>
+</Page>

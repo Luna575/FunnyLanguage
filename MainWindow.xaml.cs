@@ -19,13 +19,13 @@ namespace FunnyLanguage_WPF
         public MainWindow()
         {
             InitializeComponent();
-            Main.Content = new List(this);
+            Main.Content = new VideoList(this);
             
         }
 
         private void Button_List(object sender, RoutedEventArgs e)
         {
-            Main.Content = new List(this);
+            Main.Content = new VideoList(this);
         }
     }
 }

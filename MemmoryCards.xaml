@@ -28,7 +28,7 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="dontknowbtn" Content="Don't know" Background="LightBlue"  Visibility="Collapsed"  VerticalAlignment="Center" Click="dontknowbtn_Click" Width="100" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold" />
-            <Button x:Name="littleknowbtn" Grid.Column="2" Content="Know it, but needed a time to remmember it" Background="LightBlue" FontSize="15" Visibility="Collapsed" VerticalAlignment="Center" Click="littleknowbtn_Click" Width="300" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial"  FontStyle="Italic" FontWeight="Bold" />
+            <Button x:Name="littleknowbtn" Grid.Column="2" Content="Know it, but needed a time to remmember it" Background="LightBlue" FontSize="15" Visibility="Collapsed" VerticalAlignment="Center" Click="littleknowbtn_Click" Width="305" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial"  FontStyle="Italic" FontWeight="Bold" />
             <Button x:Name="knowbtn" Grid.Column="4" Content="Know it" Background="LightBlue" FontSize="15" Visibility="Collapsed" VerticalAlignment="Center" Click="knowbtn_Click" Width="100" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial"  FontStyle="Italic" FontWeight="Bold" />
             <Button x:Name="nextbtn" Grid.Column="6" Content="Next" Background="LightBlue" FontSize="15" Visibility="Collapsed" VerticalAlignment="Center" Click="nextbtn_Click" Width="100" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial"  FontStyle="Italic" FontWeight="Bold" />
         </Grid>
