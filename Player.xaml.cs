@@ -66,6 +66,8 @@ namespace FunnyLanguage_WPF
                 language.DisplayMemberPath = "Name";
                 language.SelectedIndex = 0;
                 fontSize.SelectedIndex = 0;
+                mediaElement.Play();
+                mediaElement.Pause();
 
             }
             else

@@ -14,24 +14,24 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Content=" QuickShowMemmoryGame... "  Background="LightBlue" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" Foreground="DarkBlue" FontFamily="Arial" FontSize="25" FontStyle="Italic" FontWeight="ExtraLight">
+        <Button Content=" Quick Show Memory Game... "  Background="LightBlue" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click" Foreground="DarkBlue" FontFamily="Arial" FontSize="25" FontStyle="Italic" FontWeight="ExtraLight" Height="100">
             <Button.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
+                    <Setter Property="CornerRadius" Value="45"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Grid.Row="1" Content=" QuickShowMemmoryGameBackwards... "  Background="LightBlue" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_1" Foreground="DarkBlue" FontFamily="Arial" FontSize="25" FontStyle="Italic" FontWeight="ExtraLight">
+        <Button Grid.Row="1" Content=" Quick Show Memory Game Backwards... "  Background="LightBlue" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_1" Foreground="DarkBlue" FontFamily="Arial" FontSize="25" FontStyle="Italic" FontWeight="ExtraLight" Height="100">
             <Button.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
+                    <Setter Property="CornerRadius" Value="45"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Grid.Row="2" Content=" MemmoryCards... "  Background="LightBlue" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_2" Foreground="DarkBlue" FontFamily="Arial" FontSize="25" FontStyle="Italic" FontWeight="ExtraLight">
+        <Button Grid.Row="2" Content=" Memory Cards... "  Background="LightBlue" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click_2" Foreground="DarkBlue" FontFamily="Arial" FontSize="25" FontStyle="Italic" FontWeight="ExtraLight" Height="100">
             <Button.Resources>
                 <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"/>
+                    <Setter Property="CornerRadius" Value="45"/>
                 </Style>
             </Button.Resources>
         </Button>

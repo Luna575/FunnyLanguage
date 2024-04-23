@@ -33,9 +33,11 @@ namespace FunnyLanguage_WPF
     /// </summary>
     public partial class AddVideoDialog : Window
     {
-        public AddVideoDialog()
+        private MainWindow _window;
+        public AddVideoDialog(MainWindow window)
         {
             InitializeComponent();
+            _window = window;
         }
 
         public string VideoName { get => videoNametxtbl.Text.Trim(); set => videoNametxtbl.Text = value; }
@@ -56,7 +58,7 @@ namespace FunnyLanguage_WPF
                 // Check if the input string contains any of the specified characters
                 if (!ValidateVideoName(name))
                 {
-                    errorMessage.Content = "You can only use letters, numbers, spaces and '_' or '-' !!!";
+                    errorMessage.Content = "You can only use letters, numbers, spaces and the underscore character or '-' !!!";
                 }
                 else if (!ValidateUrl(url))
                 {
@@ -73,6 +75,7 @@ namespace FunnyLanguage_WPF
                 else
                 {
                     errorMessage.Content = "";
+                    _window.downloadinglbl.Visibility = System.Windows.Visibility.Visible;
                     MessageBox.Show("The video has started downloading, please wait.");
                     DialogResult = true;
                     this.Close();
@@ -93,7 +96,7 @@ namespace FunnyLanguage_WPF
         private bool ValidateVideoName(string videoName)
         {
             // Define the regular expression pattern to match the specified characters
-            string pattern = @"^[a-zA-Z0-9 _-]*$";
+            string pattern = @"^[a-zA-Z0-9 _\-]*$";
             Regex regex = new Regex(pattern);
             return regex.IsMatch(videoName);
         }

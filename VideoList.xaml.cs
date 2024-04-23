@@ -56,9 +56,10 @@ namespace FunnyLanguage_WPF
         {
             if (InternetConnection())
             {
-                var addWindow = new AddVideoDialog();
+                var addWindow = new AddVideoDialog(_window);
                 if (addWindow.ShowDialog() == true)
                 {
+                    
                     var name = addWindow.VideoName;
                     var url = addWindow.VideoUrl;
                     try
@@ -66,7 +67,7 @@ namespace FunnyLanguage_WPF
                         Task.Run(() => AddVideos(name, url)).Wait();
                     }
                     catch (Exception ex) { MessageBox.Show("Error: " + ex); }
-
+                    _window.downloadinglbl.Visibility=System.Windows.Visibility.Collapsed;
                     using var db = new VideoContext();
                     videoCollection = new ObservableCollection<Models.Video>(db.Videos.ToList());
                     videolist.ItemsSource = videoCollection;
@@ -250,6 +251,8 @@ namespace FunnyLanguage_WPF
                     {
                         if (InternetConnection())
                         {
+                            _window.downloadinglbl.Visibility = System.Windows.Visibility.Visible;
+                            MessageBox.Show("The video has started downloading, please wait.");
                             var name = video.NameForDownload;
                             var url = video.Url;
                             try
@@ -271,6 +274,7 @@ namespace FunnyLanguage_WPF
 
                                             transaction.Commit();
                                             _window.backbtn.Visibility = System.Windows.Visibility.Visible;
+                                            _window.downloadinglbl.Visibility = System.Windows.Visibility.Collapsed;
                                             _window.Main.Content = new FunnyLanguage_WPF.Player(video);
 
                                         }

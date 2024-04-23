@@ -12,8 +12,17 @@
             <RowDefinition Height="35"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-
-        <Button x:Name="backbtn" Grid.Row="0" HorizontalAlignment="Left" Height="20"  Content="Back to List >> " MinWidth="100" Background="DarkBlue"  Click="Button_List" BorderThickness="0" Foreground="AliceBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="ExtraLight"></Button>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="15"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backbtn" Grid.Column="1" HorizontalAlignment="Left" Height="20"  Content="Back to List >> " MinWidth="100" Background="DarkBlue"  Click="Button_List" BorderThickness="0" Foreground="AliceBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="ExtraLight"></Button>
+            <Label x:Name="downloadinglbl" Grid.Column="3" Content="Downloading the video, please wait ..."  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold" Visibility="Collapsed" ></Label>
+        </Grid>
+        
 
         <Frame x:Name="Main" NavigationUIVisibility="Hidden" HorizontalAlignment="Center" Grid.Row="2" ></Frame>
     </Grid>

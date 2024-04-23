@@ -15,7 +15,7 @@
             <ColumnDefinition Width="15"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <TextBox Grid.Column="0" x:Name="textToTranslate" Width="350" HorizontalAlignment="Left"  Height="auto"  FontSize="14" TextChanged="textToTranslate_TextChanged"/>
+        <TextBox Grid.Column="0" x:Name="textToTranslate" Width="350" HorizontalAlignment="Left"  Height="auto"  FontSize="14" TextChanged="textToTranslate_TextChanged" TextWrapping="Wrap" TextAlignment="Justify" AcceptsReturn="True" Padding="5,2"/>
         <Grid Grid.Column="2" HorizontalAlignment="Center" Width="100" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"/>
@@ -39,6 +39,6 @@
             <Button Grid.Row="9" Content="Save words" Width="100" Click="Button_Save" Background="LightBlue"  BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="14" FontStyle="Italic" FontWeight="Bold" />
             <Button Grid.Row="11" Content="Saved words..." Width="100" Click="Button_Words" Background="LightBlue" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="14" FontStyle="Italic" FontWeight="Bold" />
         </Grid>
-        <TextBox Grid.Column="4" x:Name="translatedText"   IsReadOnly="True"  Width="350" HorizontalAlignment="Right"  Height="auto"  FontSize="14"/>
+        <TextBox Grid.Column="4" x:Name="translatedText"   IsReadOnly="True"  Width="307" HorizontalAlignment="Right"  Height="auto"  FontSize="14" TextWrapping="Wrap" TextAlignment="Justify" AcceptsReturn="True" Padding="5,2"/>
     </Grid>
 </Window>

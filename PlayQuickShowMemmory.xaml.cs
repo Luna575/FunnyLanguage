@@ -206,7 +206,7 @@ namespace FunnyLanguage_WPF
         private void CheckKnowIt()
         {
             using var db = new VideoContext();
-            var w = new List<Models.Word>(db.Words.Where(x=> x.SuccessRate - x .FailureRate >= 15));
+            var w = new List<Models.Word>(db.Words.Where(x=> x.SuccessRate - x.FailureRate >= 15));
             if (w.Any())
             {
                 using (var transaction = db.Database.BeginTransaction())
