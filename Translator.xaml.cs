@@ -30,7 +30,7 @@ namespace FunnyLanguage_WPF
     /// </summary>
     public partial class Translator : Window
     {
-        private static Translator instance;
+        private static Translator? instance;
         private TranslatorClass translator = new TranslatorClass();
         private ObservableCollection<Models.Language> languageCollection;
         public ObservableCollection<Models.Language> languageCollectionVideo;
@@ -76,7 +76,7 @@ namespace FunnyLanguage_WPF
         }
       
 
-        private async void Button_Translate(object sender, RoutedEventArgs e)
+        private void Button_Translate(object sender, RoutedEventArgs e)
         {
             translatedText.Text = "";
             Models.Language l1 = (Models.Language)language1.SelectedItem;
@@ -94,10 +94,10 @@ namespace FunnyLanguage_WPF
                         {
                             try
                             {
-                                string text = await translator.TranslateTextAsync(textToTranslate.Text, code1, code2);
+                                string text = translator.TranslateTextAsync(textToTranslate.Text, code1, code2);
                                 translatedText.Text = text;
                             }
-                            catch (Exception ex)
+                            catch (Exception)
                             {
                                 throw;
                             }
@@ -116,7 +116,7 @@ namespace FunnyLanguage_WPF
                         return;
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     translatedText.Text = "Sorry something went wrong. Maybe you reached the daily limit for the translation!!!";
                 }

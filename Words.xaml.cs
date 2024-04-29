@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
@@ -38,10 +39,10 @@ namespace FunnyLanguage_WPF
             Code = ""
         };
         private int? _videoId;
-        public ObservableCollection<Models.Word> words;
+        public ObservableCollection<Models.Word>? words;
         private string knowit = "";
         private VideoList? _videoList;
-        private static Words instance;
+        private static Words? instance;
         public Words(int? videoId = null, VideoList? videoList = null)
         {
             InitializeComponent();
@@ -58,7 +59,7 @@ namespace FunnyLanguage_WPF
             {
                 words = new ObservableCollection<Models.Word>(db.Words.ToList());
             }
-            if (words != null)
+            if (words != null && words.Count != 0)
             {
                 listview.ItemsSource = words;
                 var languages = new List<Models.Language>();

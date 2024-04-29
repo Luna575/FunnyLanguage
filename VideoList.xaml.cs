@@ -56,6 +56,7 @@ namespace FunnyLanguage_WPF
         {
             if (InternetConnection())
             {
+                addbtn.IsEnabled = false;
                 var addWindow = new AddVideoDialog(_window);
                 if (addWindow.ShowDialog() == true)
                 {
@@ -72,11 +73,12 @@ namespace FunnyLanguage_WPF
                     videoCollection = new ObservableCollection<Models.Video>(db.Videos.ToList());
                     videolist.ItemsSource = videoCollection;
                 }
+                addbtn.IsEnabled = true;
             } else
             {
                 MessageBox.Show("Please connect to the Internet or check your Internet connection!!!");
             }
-          
+            
 
         }
         private void Button_Delete(object sender, RoutedEventArgs e)
@@ -324,7 +326,7 @@ namespace FunnyLanguage_WPF
                 title = video.Title;
                 videoId = video.Id;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 error += "Problem with URL!!! ";
             }
@@ -417,7 +419,7 @@ namespace FunnyLanguage_WPF
                         error += "Subtitles that aren't automatically generated don't exist for this video, so you can't download this video. ";
                     }
                 }
-                catch (Exception ex) { error += "Could not get the captions for this video. "; }
+                catch (Exception) { error += "Could not get the captions for this video. "; }
                 string filePathInAppDataFolder = "";
                 if (!videoId.Equals("") && string.IsNullOrEmpty(error))
                 {
@@ -454,7 +456,7 @@ namespace FunnyLanguage_WPF
                         // For example:
                         File.WriteAllBytes(filePathInAppDataFolder, videoBytes);
                     }
-                    catch (Exception ex) { error = "Could not get this video. "; }
+                    catch (Exception) { error = "Could not get this video. "; }
                 }
 
                 if (error.Equals(string.Empty))

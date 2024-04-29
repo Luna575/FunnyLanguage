@@ -25,6 +25,7 @@ using FunnyLanguage_WPF.Models;
 using Microsoft.EntityFrameworkCore.Storage;
 using YoutubeExplode.Videos;
 using System.Net;
+using System.Net.Http;
 
 namespace FunnyLanguage_WPF
 {
@@ -100,21 +101,22 @@ namespace FunnyLanguage_WPF
             Regex regex = new Regex(pattern);
             return regex.IsMatch(videoName);
         }
-        /// <summary>
-        /// inšpirované  touto stránkou: https://stackoverflow.com/questions/14823544/how-to-check-if-youtube-url-in-c-sharp
-        /// </summary>
-        /// <param name="videoUrl"></param>
-        /// <returns></returns>
+       
         private bool ValidateUrl(string videoUrl)
         {
+            using var httpClient = new HttpClient();
             try
             {
-                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(videoUrl);
-                request.Method = "HEAD";
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                var request = new HttpRequestMessage(HttpMethod.Get, videoUrl);
+                var response = httpClient.Send(request);
+                using var reader = new StreamReader(response.Content.ReadAsStream());
+                var responseBody = reader.ReadToEnd();
+                if (!string.IsNullOrEmpty(responseBody))
                 {
-                    return response.ResponseUri.ToString().Contains("youtube.com") ? true : false;
+                  //TODO otestovať
+                    return videoUrl.Contains("youtube.com") ? true : false;
                 }
+                return false;
             } catch {
                 MessageBox.Show("Wrong url!");
                 return false;

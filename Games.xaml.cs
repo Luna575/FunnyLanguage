@@ -34,7 +34,7 @@ namespace FunnyLanguage_WPF
             var game = new PlayQuickShowMemmory(_video);
             try {
                 game.Show();
-            } catch (Exception ex)
+            } catch (Exception)
             {
                 MessageBox.Show("Game was closed!!!");
             }
@@ -47,7 +47,7 @@ namespace FunnyLanguage_WPF
             {
                 game.Show();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Game was closed!!!");
             }
@@ -60,7 +60,7 @@ namespace FunnyLanguage_WPF
             {
                 game.Show();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Game was closed!!!");
             }

@@ -32,13 +32,13 @@ namespace FunnyLanguage_WPF
     /// </summary>}")
     public partial class Player : Page
     {
-       private DispatcherTimer timer;
+       private DispatcherTimer? timer;
 
-        public ObservableCollection<Models.Language> languageCollection;
+        public ObservableCollection<Models.Language>? languageCollection;
         private bool captionBool = false;
         private Models.Video _video;
-        private Models.Language _language;
-        private List<SubtitlesParser.Classes.SubtitleItem> subtitles;
+        private Models.Language? _language;
+        private List<SubtitlesParser.Classes.SubtitleItem>? subtitles;
         public Player(Models.Video video)
         {
             InitializeComponent();
@@ -163,19 +163,23 @@ namespace FunnyLanguage_WPF
         private void Translate()
         {
             var txt = captiontxt.SelectedText;
-            Translator translator = Translator.GetInstance(languageCollection, _language, _video, txt);
-            if (translator != null) { translator.Show(); }
+            if (languageCollection != null && _language != null)
+            {
+                Translator translator = Translator.GetInstance(languageCollection, _language, _video, txt);
+                if (translator != null) { translator.Show(); }
+            }
+            
             
         }
         private void Button_CaptonOnOffC(object sender, RoutedEventArgs e)
         {
-            if (captionBool)
+            if (captionBool && timer!=null)
             {
                 captionBool = false;
                 captionbtn.Content = "Subtitles Off...";
                 timer.Tick += timer_Tick;
             }
-            else {
+            else if(timer!=null) {
                 captionBool = true;
                 captionbtn.Content = "Subtitles On...";
                 timer.Tick += timer_Tick; 
@@ -194,14 +198,15 @@ namespace FunnyLanguage_WPF
             endTimeTxt.Content = mediaElement.NaturalDuration.TimeSpan.ToString();
             slider.Maximum= mediaElement.NaturalDuration.TimeSpan.TotalSeconds;
             slider.Value = mediaElement.Position.TotalSeconds;
-            timer.Start();
+            if (timer != null) { timer.Start(); }
+            
         }
 
         private void mediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
-            timer.Stop();
+            if (timer != null) { timer.Stop(); }
         }
-        private List<SubtitlesParser.Classes.SubtitleItem> GetCaptions()
+        private List<SubtitlesParser.Classes.SubtitleItem>? GetCaptions()
         {
             if (_language != null)
             {

@@ -51,7 +51,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Button Grid.Row="1" Background="LightBlue" VerticalAlignment="Bottom" Content="Add..." Width="145" Height="35" Click="Button_Add" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
+            <Button Grid.Row="1" Background="LightBlue" VerticalAlignment="Bottom" x:Name="addbtn" Content="Add..." Width="145" Height="35" Click="Button_Add" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
             <Button x:Name="playVideobtn" Grid.Row="3" Background="LightBlue" VerticalAlignment="Center" Content="Play Video" Width="145" Height="35" Click="Button_PlayVideo" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
             <Button x:Name="wordsbtn" Grid.Row="5" Background="LightBlue" VerticalAlignment="Center" Content="Words..." Width="145" Height="35" Click="Button_Words" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>
             <Button x:Name="allwordsbtn" Grid.Row="7" Background="LightBlue" VerticalAlignment="Center" Content="All words..." Width="145" Height="35" Click="Button_AllWords" BorderThickness="0" Foreground="DarkBlue" FontFamily="Arial" FontSize="15" FontStyle="Italic" FontWeight="Bold"/>

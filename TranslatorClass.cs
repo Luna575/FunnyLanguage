@@ -27,7 +27,7 @@ namespace FunnyLanguage_WPF
         /// <param name="targetlanguage"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public async Task<string> TranslateTextAsync(string text, string inputLanguage, string targetlanguage)
+        public string TranslateTextAsync(string? text, string? inputLanguage, string? targetlanguage)
         {
             if (string.IsNullOrEmpty(text))
                 throw new ArgumentNullException(nameof(text));
@@ -52,7 +52,7 @@ namespace FunnyLanguage_WPF
                 
                return string.Empty;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return string.Empty;
             }
